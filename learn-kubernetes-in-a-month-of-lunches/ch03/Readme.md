@@ -42,3 +42,23 @@ and you don’t achieve load-balancing across a multinode cluster.
 
 
 ### 3.4 Routing traffic outside Kubernetes Cluster
+
+ExternalName Services create a domain name alias. Here the Pod
+can use the local cluster name , which the Kubernetes db-service DNS server resolves to the public address .
+
+The Pod actually communicates with a component outside of the cluster, but that’s transparent. The domain names it uses are local.
+
+
+
+# run the DNS lookup tool to resolve the Service name:
+kubectl exec deploy/sleep-1 -- sh -c 'nslookup numbers-api | tail -n 5'
+
+# PG: 78 Con for External Name Service, and reason we use headless service
+There’s one important thing to understand about ExternalName Services, for components like databases, which communicate over TCP, but it’s not so simple for HTTP services. HTTP requests include the target host name in a header field, and that won’t match the actual domain from the ExternalName response, so the client call will probably fail.
+
+## Understanding Kubernetes Service resolution
+
+Domain name lookups from Pod containers are resolved by the Kubernetes DNS server. For Kubernetes Services, it returns a cluster IP address or an external domain name.
+
+All communication from the Pod is routed by a network proxy, another internal Kubernetes component. A proxy runs on each node. It maintains
+an updated list of endpoints for each Service and routes traffic using a network packet filter from the operating system (IPVS or iptables on Linux).
