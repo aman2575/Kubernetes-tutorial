@@ -62,3 +62,5 @@ Domain name lookups from Pod containers are resolved by the Kubernetes DNS serve
 
 All communication from the Pod is routed by a network proxy, another internal Kubernetes component. A proxy runs on each node. It maintains
 an updated list of endpoints for each Service and routes traffic using a network packet filter from the operating system (IPVS or iptables on Linux).
+
+## Namespaces are a way to logically partition a Kubernetes cluster

@@ -19,10 +19,3 @@ kubectl exec hello-kiamol -- cat /usr/share/nginx/html/index.html > ./kiamol/ch0
 
 
 
-## Connecting Pods over the network with Services
-# Services allow pods to communicate using a fixed domain name.
-Pods communicate using domain names. DNS lookups are handled by the internal kubernetes DNS server. It returns the IP address of the Service.
-
-Creating a Service effectively registers it with the DNS server, using an IP address that is static for the life of the Service.
-
-The Service is loosely coupled to the Pod using the same label-selector approach that Deployments use. A Service can be the virtual address for zero or more Pods. The Pod does not have a Service, so it cannot be reached with a DNS name
