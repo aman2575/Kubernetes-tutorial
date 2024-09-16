@@ -21,7 +21,7 @@
 	- You can use kubectl proxy to access this UI.
 		$ kubectl proxy
 
-### Chapter 4:
+Chapter 4:
 
 Namespaces: 
 	-  Kubernetes uses namespaces to organize objects in the cluster. 
@@ -61,7 +61,7 @@ What Are cgroups?
 A control group (cgroup) is a Linux kernel feature that limits, accounts for, and isolates the resource usage (CPU, memory, disk I/O, network, and so on) of a collection of processes
 
 
-### Chapter 5
+Chapter 5
 Pods: 
 	- Each container within a Pod runs in its own cgroup, but they share a number of
  Linux namespaces.
@@ -80,7 +80,7 @@ Getting More Info with Logs:
 		-   Containers that fail readiness checks are removed from service load balancers.
 		-   Combining the readiness and liveness probes helps ensure only healthy containers are running within the cluster.
 
-### Chapter 6
+Chapter 6
 Labels and Annotations:
 	-  Labels are key/value pairs that can be attached to Kubernetes objects such as Pods and ReplicaSets.
 	- Labels provide the foundation for grouping objects
@@ -119,29 +119,11 @@ Label Selectors:
  		- $ kubectl get pods --selector="app in (alpaca,bandicoot)"
 	- $ kubectl get deployments --selector="canary"
 
-### Chapter 7
+Chapter 7
 Service Discovery:
 	-  This readiness check is a way for an overloaded or sick server to signal to the system that it doesn’t want to receive traffic anymore. This is a great way to implement graceful shutdown. The server can signal that it no longer wants traffic, wait until existing connections are closed, and then cleanly exit.
 	- NodePort:
 		-  If your cluster is in the cloud someplace, you can use SSH tunneling with something like this:
  			- $ ssh <node> -L 8080:localhost:32711
 Endpoints:
-	- Endpoints object that contains the IP addresses for 
-	that service:
-		-  $ kubectl describe endpoints alpaca-prod
-		-  $ kubectl get endpoints alpaca-prod --watch
-
-Ingress:
-	- How to define multiple ingress in different namespace with subPaths?
-	- Types of Ingress Controllers?
-	- How to deploy multiple ingress controllers in a cluster?
-	- Service Mesh
-		- Istio and explore others
-
-### Chapter 8
-
-- What is path-rewriting in Ingress?
-- How can we automatically renew new cert using opensource tool such as Let's encrypt or Cert-Manager?
-- Ambassador and Gloo are two other Envoy-based Ingress controllers that are focused on being API Gateways.
-- Traefix is a reverse proxy implemented in Go that also can function as an Ingress controller.
-	- It has a set of feature and dashboard that are very developer friendly
+	- Endpoints object that contains the IP addresses for that service:
