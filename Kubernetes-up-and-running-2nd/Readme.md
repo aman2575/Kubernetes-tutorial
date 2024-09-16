@@ -164,4 +164,14 @@ Autoscaling Replica Set:
 Autoscaling based on CPU:
 	- $ kubectl autoscale rs kuard --min=2 --max=5 --cpu-percent=80
 	- $ kubectl get hpa
-	
+
+### Chapter 10
+Deployment
+
+Deployment Internals:
+ 	- We can use this in a label selector query across ReplicaSets to find that specific ReplicaSet:
+		$ kubectl get replicasets --selector=run=kuard
+	-  We can resize the deployment using the imperative scale command:
+		$ kubectl scale deployments kuard --replicas=2
+
+	-  You also need to run kubectl replace --save config. This adds an annotation so that, when applying changes in the future, kubectl will know what the last applied configuration was for smarter merging of configs. If you always use kubectl apply, this step is only required after the first time you create a deployment using kubectl create -f.
