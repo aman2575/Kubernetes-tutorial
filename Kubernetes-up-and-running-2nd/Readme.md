@@ -175,3 +175,44 @@ Deployment Internals:
 		$ kubectl scale deployments kuard --replicas=2
 
 	-  You also need to run kubectl replace --save config. This adds an annotation so that, when applying changes in the future, kubectl will know what the last applied configuration was for smarter merging of configs. If you always use kubectl apply, this step is only required after the first time you create a deployment using kubectl create -f.
+
+### Chapter 11
+
+DaemoSet
+
+Rolling Update of a DaemonSet:
+-  There are two parameters that control the rolling update of a DaemonSet:
+ 	• spec.minReadySeconds, which determines how long a Pod must be “ready” before the rolling update proceeds to upgrade subsequent Pods. (30s default)
+	• spec.updateStrategy.rollingUpdate.maxUnavailable, which indicates how many Pods may be simultaneously updated by the rolling update.
+
+-  The DaemonSet provides its own controller and scheduler to ensure key services like monitoring agents are always up and running on the right nodes in your cluster.
+
+
+### Chapter 12
+
+Jobs
+
+Job Object:
+	-  The Job object is responsible for creating and 		managing Pods defined in a template in the job specification.
+Job Patterns:
+	- This job pattern is defined by two primary attributes of a job, 
+		- namely the number of job completions and
+		- the number of Pods to run in parallel.
+
+
+### Chapter 13
+
+ConfigMap and Secrets
+
+Consuming Secrets
+	-  Secrets volumes
+		- Secrets are stored on tmpfs volumes (aka RAM disks), and as such are not written to disk on nodes.
+
+Private Docker Registries:
+	- Image pull secrets leverage the secrets API to automate the distribution of private registry credentials.
+		- $ kubectl create secret docker-registry my-image-pull-secret \
+ 		--docker-username=<username> \
+  		--docker-password=<password> \
+  		--docker-email=<email-address>
+
+		
