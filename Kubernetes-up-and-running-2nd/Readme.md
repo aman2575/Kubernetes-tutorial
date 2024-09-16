@@ -140,8 +140,28 @@ Ingress:
 
 ### Chapter 8
 
+Ingress
+
 - What is path-rewriting in Ingress?
 - How can we automatically renew new cert using opensource tool such as Let's encrypt or Cert-Manager?
 - Ambassador and Gloo are two other Envoy-based Ingress controllers that are focused on being API Gateways.
 - Traefix is a reverse proxy implemented in Go that also can function as an Ingress controller.
 	- It has a set of feature and dashboard that are very developer friendly
+
+### Chapter 9
+
+Replicaset
+
+Inspecting a ReplicaSet:
+	- kubectl describe rs kuard
+
+Imperative Scaling with kubectl scale:
+	-  $ kubectl scale replicasets kuard --replicas=4
+
+Autoscaling Replica Set:
+	-  HPA requires the presence of the heapster Pod on you cluster. heapster keeps track of metrics and provides an API for consuming metrics that HPA uses when making scaling decisions.
+
+Autoscaling based on CPU:
+	- $ kubectl autoscale rs kuard --min=2 --max=5 --cpu-percent=80
+	- $ kubectl get hpa
+	
