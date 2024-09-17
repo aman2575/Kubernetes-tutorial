@@ -215,4 +215,22 @@ Private Docker Registries:
   		--docker-password=<password> \
   		--docker-email=<email-address>
 
+### Chapter 14
+
+Role Based Access Control for Kubernetes
+
+- Every request to Kubernetes is first authenticated.Authentication provides the iden tity of the caller issuing the request.
+
+- Once users have been properly identified, the authorization phase determines whether they are authorized to perform the request
+	- Authorization is a combination of the identity of the user, the resource (effectively the HTTP path), and the verb or action the user is attempting to perform.
+	- If the particular user is authorized for performing that action on that resource, then the request is allowed to proceed. Other wise, an HTTP 403 error is returned. 
 		
+Testing Authorization with can-i:
+	- $ kubectl auth can-i create pods
+	- $ kubectl auth reconcile -f some-rbac-config.yaml  
+	Use --dry-run: if you want to see changes before they are made
+
+Aggregating ClusterRoles:
+	- an aggregation rule to combine multiple roles together in a new role. This new role combines all of the capabilities of all of the aggregate roles together, and any changes to any of the constituent subroles will automatically be propogated back into the aggregate role
+
+Q, How to give access to someone using eks with command 
