@@ -234,3 +234,17 @@ Aggregating ClusterRoles:
 	- an aggregation rule to combine multiple roles together in a new role. This new role combines all of the capabilities of all of the aggregate roles together, and any changes to any of the constituent subroles will automatically be propogated back into the aggregate role
 
 Q, How to give access to someone using eks with command 
+
+
+
+### Chapter 15
+
+Integrating Storage solution and kubernetes
+
+Limitations of External Services:
+	- : they do not perform any health checking. 
+
+Properties of StatefulSets:
+	- Each replica get a persistent hostname with a unique index 
+	- Each replica is created in order from lowest to  highest index, and creation will block until the Pod at the previous index is healthy and available. This also applies to scaling up.
+	- When a StatefulSet is deleted, each of the managed replica Pods is also deleted in order from highest to lowest. This also applies to scaling down the number of replicas.
