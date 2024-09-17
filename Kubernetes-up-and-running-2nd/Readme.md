@@ -248,3 +248,16 @@ Properties of StatefulSets:
 	- Each replica get a persistent hostname with a unique index 
 	- Each replica is created in order from lowest to  highest index, and creation will block until the Pod at the previous index is healthy and available. This also applies to scaling up.
 	- When a StatefulSet is deleted, each of the managed replica Pods is also deleted in order from highest to lowest. This also applies to scaling down the number of replicas.
+
+
+### Chapter 16
+
+Extending Kubernetes
+
+- In How many ways we can exend kubernetes?
+	- Admission Controllers
+	- Custom Resource Definitions through Container Network Interface plugin
+	- Container Storage Interface
+	- Container Runtime Interface
+	- Custom Resources
+
